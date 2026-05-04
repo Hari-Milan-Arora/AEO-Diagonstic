@@ -1,41 +1,62 @@
-# 🔍 AEO Diagnostic Engine
+# 🔍 AEO Diagnostic Engine v2.0
 
-**Multi-AI Brand Visibility Analyzer** — Evaluate how your brand performs across AI-generated answers.
+**Enterprise-grade Answer Engine Optimization diagnostic system** — Evaluate how your brand performs across AI-generated answers with ML-powered scoring.
 
 ## Features
 
-- **Multi-AI Simulation**: Simulates ChatGPT, Claude, and Gemini responses independently
-- **Cross-AI Consensus Engine**: Merges responses to produce weighted consensus answers
-- **9-Phase Pipeline**: Query generation → AI simulation → Consensus → Evaluation → Scoring → Output → Aggregation → Gap Analysis → Action Plan
-- **Per-AI Brand Tracking**: See exactly which AI systems mention your brand (✓/✗)
-- **Scoring System**: Visibility, Authority, Relevance, Trust scores (0–10) per query
-- **Interactive Charts**: Radar, bar, gauge, and horizontal bar charts (Canvas-based, zero dependencies)
-- **30-Day Action Plan**: Prioritized roadmap with impact ratings
-- **JSON Export**: Download complete diagnostic report
+- **Multi-AI Simulation**: ChatGPT, Claude, Gemini, and Ollama responses
+- **10-Phase Pipeline**: Query Gen → AI Responses → Consensus → Feature Extraction → ML Scoring → Brand Analysis → Output → Aggregation → Predictions → Action Plan
+- **ML Scoring Layer**: Visibility, Authority, Relevance, Trust (0–10) with weighted ensemble logic
+- **Predictive Insights**: Future ranking probability, trend projections, competitor risk
+- **Cross-AI Consensus Engine**: Weighted brand mention detection across 4 models
+- **30-Day Action Plan**: Prioritized roadmap with AI-specific optimization
+- **Interactive Charts**: Radar, bar, gauge, trend line, horizontal bars (Canvas-based)
+- **Real-time Progress**: SSE streaming with 10-phase visual tracker
 
-## Usage
+## Quick Start
 
-1. Open `index.html` in any modern browser
-2. Enter your brand name, category, target audience, and optional competitors
-3. Set the number of queries (5–30)
-4. Click **Run Full Diagnostic**
-5. Explore results across 4 tabs: Per-Query | Analysis | Gap Analysis | 30-Day Plan
+### Windows
+```
+start.bat
+```
+
+### Manual
+```bash
+python -m venv venv
+venv\Scripts\activate      # Windows
+pip install -r backend/requirements.txt
+python -m uvicorn backend.main:app --reload
+```
+
+Open http://127.0.0.1:8000
 
 ## Tech Stack
 
-- Pure HTML/CSS/JS — zero dependencies
-- Canvas API for charts
-- Glassmorphic dark UI with Inter + Outfit fonts
-- Fully responsive (mobile → desktop)
+| Layer | Technology |
+|-------|-----------|
+| Backend | Python, FastAPI, Pydantic |
+| Frontend | HTML, CSS, Vanilla JS |
+| Charts | Canvas API (zero deps) |
+| ML | Weighted ensemble scoring |
+| Streaming | Server-Sent Events (SSE) |
 
-## File Structure
+## Project Structure
 
 ```
-├── index.html    — Main page
-├── index.css     — Design system & styles
-├── app.js        — UI orchestrator
-├── engine.js     — 9-phase AEO engine
-├── charts.js     — Canvas chart library
-├── AGENTS.md     — System contract
-└── README.md     — This file
+├── backend/
+│   ├── main.py              # FastAPI entry point
+│   ├── config.py            # Settings & env vars
+│   ├── routers/diagnostic.py # API endpoints
+│   ├── services/            # 10-phase pipeline
+│   ├── models/              # Pydantic schemas
+│   └── utils/               # NLP & helpers
+├── frontend/
+│   ├── index.html           # SPA shell
+│   ├── index.css            # Design system
+│   ├── app.js               # Main controller
+│   ├── api.js               # Backend client
+│   ├── charts.js            # Chart library
+│   └── components.js        # UI renderers
+├── start.bat                # One-click launcher
+└── README.md
 ```
