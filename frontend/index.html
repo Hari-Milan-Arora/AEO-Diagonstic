@@ -1,136 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AEO Diagnostic Engine — Multi-AI Brand Visibility Analyzer</title>
-  <meta name="description" content="Enterprise-grade Answer Engine Optimization diagnostic system. Evaluate brand performance across ChatGPT, Claude, Gemini, and Ollama with ML-powered scoring.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
-  <div class="app-container">
-    <!-- Header -->
-    <header class="app-header">
-      <div class="logo">
-        <div class="logo-icon">🔍</div>
-        <h1>AEO Diagnostic Engine</h1>
-      </div>
-      <p class="subtitle">Multi-AI Brand Visibility Analyzer — ChatGPT · Claude · Gemini · Ollama</p>
-      <div class="header-actions">
-        <div class="mode-toggle" id="modeToggle" title="Simulation Mode Active">
-          <span class="mode-indicator simulation"></span>
-          <span class="mode-label">Simulation</span>
-        </div>
-        <button class="btn btn-export" id="exportBtn" title="Export Results as JSON">📥 Export JSON</button>
-      </div>
-    </header>
-
-    <!-- API Status Bar -->
-    <div class="api-status-bar glass-card" id="apiStatusBar">
-      <div class="status-item" id="statusBackend">
-        <span class="status-dot"></span>
-        <span>Backend</span>
-      </div>
-      <div class="status-item" id="statusChatGPT">
-        <span class="status-dot"></span>
-        <span>ChatGPT</span>
-      </div>
-      <div class="status-item" id="statusClaude">
-        <span class="status-dot"></span>
-        <span>Claude</span>
-      </div>
-      <div class="status-item" id="statusGemini">
-        <span class="status-dot"></span>
-        <span>Gemini</span>
-      </div>
-      <div class="status-item" id="statusOllama">
-        <span class="status-dot"></span>
-        <span>Ollama</span>
-      </div>
-    </div>
-
-    <!-- Input Form -->
-    <section class="input-section glass-card">
-      <h2>⚙️ Configure Diagnostic</h2>
-      <form id="diagnosticForm">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="brandName">Brand Name *</label>
-            <input type="text" id="brandName" placeholder="e.g. Nike, Shopify, Notion" required>
-          </div>
-          <div class="form-group">
-            <label for="category">Category *</label>
-            <input type="text" id="category" placeholder="e.g. Athletic Footwear, Project Management" required>
-          </div>
-          <div class="form-group">
-            <label for="audience">Target Audience *</label>
-            <input type="text" id="audience" placeholder="e.g. Fitness enthusiasts, Small business owners" required>
-          </div>
-          <div class="form-group">
-            <label for="competitors">Competitors (comma-separated)</label>
-            <input type="text" id="competitors" placeholder="e.g. Adidas, New Balance, Asics">
-          </div>
-          <div class="form-group full-width">
-            <label>Number of Queries</label>
-            <div class="slider-container">
-              <input type="range" id="querySlider" min="5" max="30" value="15">
-              <span class="slider-value" id="sliderValue">15</span>
-            </div>
-          </div>
-          <div class="form-group full-width">
-            <button type="submit" class="btn btn-primary btn-run" id="runBtn">▶ Run Full Diagnostic</button>
-          </div>
-        </div>
-      </form>
-    </section>
-
-    <!-- Progress -->
-    <section class="progress-section glass-card" id="progressSection">
-      <div class="progress-label">
-        <span class="phase-name loading-pulse" id="phaseName">Initializing...</span>
-        <span class="phase-pct" id="phasePct">0%</span>
-      </div>
-      <div class="progress-bar-container">
-        <div class="progress-bar-fill" id="progressFill"></div>
-      </div>
-      <div class="progress-phases" id="progressPhases">
-        <span class="phase-dot" data-phase="1" title="Query Generation">1</span>
-        <span class="phase-dot" data-phase="2" title="AI Responses">2</span>
-        <span class="phase-dot" data-phase="3" title="Consensus">3</span>
-        <span class="phase-dot" data-phase="4" title="Feature Extraction">4</span>
-        <span class="phase-dot" data-phase="5" title="ML Scoring">5</span>
-        <span class="phase-dot" data-phase="6" title="Brand Analysis">6</span>
-        <span class="phase-dot" data-phase="7" title="Structured Output">7</span>
-        <span class="phase-dot" data-phase="8" title="Aggregation">8</span>
-        <span class="phase-dot" data-phase="9" title="Predictions">9</span>
-        <span class="phase-dot" data-phase="10" title="Action Plan">10</span>
-      </div>
-    </section>
-
-    <!-- Results -->
-    <section class="results-section" id="resultsSection">
-      <nav class="tab-nav">
-        <button class="tab-btn active" data-tab="queries">📋 Per-Query Results</button>
-        <button class="tab-btn" data-tab="analysis">📊 Aggregated Analysis</button>
-        <button class="tab-btn" data-tab="gaps">🔍 Gap Analysis</button>
-        <button class="tab-btn" data-tab="predictive">🔮 Predictive Insights</button>
-        <button class="tab-btn" data-tab="plan">🚀 30-Day Plan</button>
-      </nav>
-
-      <div class="tab-panel active" id="tab-queries">
-        <div id="queryCards"></div>
-      </div>
-      <div class="tab-panel" id="tab-analysis"></div>
-      <div class="tab-panel" id="tab-gaps"></div>
-      <div class="tab-panel" id="tab-predictive"></div>
-      <div class="tab-panel" id="tab-plan"></div>
-    </section>
-  </div>
-
-  <script src="api.js"></script>
-  <script src="charts.js"></script>
-  <script src="components.js"></script>
-  <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AEO Diagnostic Engine - Multi-AI Brand Visibility Analyzer</title>
+    <meta
+      name="description"
+      content="Enterprise-grade Answer Engine Optimization diagnostic system for AI brand visibility."
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
