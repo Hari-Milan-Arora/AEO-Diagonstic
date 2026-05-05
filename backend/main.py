@@ -3,10 +3,9 @@ AEO Diagnostic Engine — FastAPI Entry Point
 Serves the API and frontend static files.
 """
 
-import os
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -27,13 +26,23 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # API routes
 app.include_router(diagnostic_router)
+
+
+@app.get("/api/health")
+async def root_health():
+    return {
+        "status": "ok",
+        "app": "AEO Diagnostic Engine",
+        "version": "2.0.0",
+        "mode": "simulation",
+    }
 
 # Serve frontend static files
 if FRONTEND_DIR.exists():
@@ -45,17 +54,9 @@ if FRONTEND_DIR.exists():
 
     @app.get("/{path:path}")
     async def serve_static(path: str):
+        if path.startswith("api/"):
+            raise HTTPException(status_code=404, detail="Not Found")
         file_path = FRONTEND_DIR / path
         if file_path.exists() and file_path.is_file():
             return FileResponse(str(file_path))
         return FileResponse(str(FRONTEND_DIR / "index.html"))
-
-
-@app.get("/api/health")
-async def root_health():
-    return {
-        "status": "ok",
-        "app": "AEO Diagnostic Engine",
-        "version": "2.0.0",
-        "mode": "simulation",
-    }
